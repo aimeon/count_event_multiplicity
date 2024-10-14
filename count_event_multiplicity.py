@@ -82,7 +82,7 @@ def average_multiplicity_with_error(all_multiplicities):
         avg_multiplicity = 0
         sem = 0  # Avoid division by zero if no clusters are found
 
-    return avg_multiplicity, sem
+    return avg_multiplicity, sem, n
 
 
 if __name__ == "__main__":
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     all_multiplicities = process_images_in_folder(folder_path, threshold_value)
 
     if all_multiplicities:
-        avg_multiplicity, sem = average_multiplicity_with_error(all_multiplicities)
+        avg_multiplicity, sem, n_clusters = average_multiplicity_with_error(all_multiplicities)
 
         for i, multiplicities in enumerate(all_multiplicities):
             print(f"Image {i + 1}:")
@@ -105,5 +105,6 @@ if __name__ == "__main__":
 
         print(f"Overall Average Multiplicity across all images: {round(avg_multiplicity, 2)}")
         print(f"Standard Error of the Mean (SEM): {sem}")
+        print(f"Overall number of clusters: {n_clusters}")
     else:
         print("No images processed.")
